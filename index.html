@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href=".assets/css/style.css">
+  <link rel="stylesheet" href=".assets/style.css">
   <title>Quiz</title>
 </head>
 <body>
@@ -14,12 +14,13 @@
       <button class="startBtn" id="start-btn" type="submit">Start</button>
     </div>
     <div id="quiz">
+      <div id="timer"></div>
       <div id="question"></div>
         <div id="answers">
           <ul>
-            <li><button class="option-1" id="1" onclick="checkAnswer('1')"></button></li>
-            <li><button class="option-2" id="2" onclick="checkAnswer('2')"></button></li>
-            <li><button class="option-3" id="3" onclick="checkAnswer('3')"></button></li>
+            <li><button class="option-1" id="1" onclick="check('1')"></button></li>
+            <li><button class="option-2" id="2" onclick="check('2')"></button></li>
+            <li><button class="option-3" id="3" onclick="check('3')"></button></li>
           </ul>
         </div>
     </div>
