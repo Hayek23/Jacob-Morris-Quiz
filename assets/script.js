@@ -6,8 +6,9 @@ let optionThree = document.getElementById('3');
 let quiz = document.getElementById('quiz');
 let startBtn = document.getElementById('start-btn')
 let timeLeft = 75;
-let startScore = 0
+let score = 0
 let timer = document.getElementById('timer')
+let scoreArea = document.getElementById('score')
 
 const questions = [
     {
@@ -15,71 +16,74 @@ const questions = [
         optionOne: 'A number',
         optionTwo: 'A sentence',
         optionThree: 'Something that is either true or false',
-        correct: 'Something that is either true or false'
+        correct: '3'
     },
     {
         question: 'What is the foundation of web development?',
         optionOne: 'HTML',
         optionTwo: 'JS',
         optionThree: 'CSS',
-        correct: 'HTML'
+        correct: '1'
     },
     {
         question: 'What does JS stand for?',
         optionOne: "Jerry's soup",
         optionTwo: 'JavaScript',
         optionThree: 'Jump soon',
-        correct: 'JavaScript'
+        correct: '2'
     },
     {
         question: 'Which of these added style to the webpage?',
         optionOne: 'MS Paint',
         optionTwo: 'HTML',
         optionThree: 'CSS',
-        correct: 'CSS'
+        correct: '3'
     }
 ];
+
 let lastQuestion = questions.length -1;
 let questionIndex = 0;
 
-timer.textContent = "Time Remaining: " + startScore + "s"
+timer.textContent = "Time Remaining: 0 seconds"
 
 startBtn.addEventListener('click', start)
 
 function start() {
     const timeInterval = setInterval(function() {
-        timer.textContent = "Time remaining: " + timeLeft + 's';
+        timer.textContent = "Time remaining: " + timeLeft + ' seconds';
         timeLeft -=1;
-        if(timeLeft === 0 || questions.length === questionIndex+1){
-            score();
+        if(timeLeft === 0 || lastQuestion){
             clearInterval(timeInterval);
-            timer.textContent = 'Time remaining:' + timeLeft + 's'
+            timer.textContent = 'Time remaining:' + timeLeft + ' seconds'
         }
     }, 1000);
     loadQuestion();
 };
 
 function loadQuestion() {
-    let question = questions[questionIndex]
-    questionsArea.innerHTML = question.question;
-    optionOne.innerHTML = question.optionOne;
-    optionTwo.innerHTML = question.optionTwo;
-    optionThree.innerHTML = question.optionThree;
+    questionsArea.innerHTML = questions[questionIndex].question;
+    optionOne.innerHTML = questions[questionIndex].optionOne;
+    optionTwo.innerHTML = questions[questionIndex].optionTwo;
+    optionThree.innerHTML = questions[questionIndex].optionThree;
 };
 
 function check(answer){
-    if(questions[questionIndex].correct === answer) {
+    if(questions[questionIndex].correct == answer) {
         answerOutput.textContent = "Correct"
+        score = score + 1;
+        console.log(score)
     } else {
-        answerOutput.textContent = 'incorrect'
+        answerOutput.textContent = 'Incorrect'
+        score = score - 1
+        console.log(score)
     }
-
-    if (questions.length === questionIndex+1){
-        loadResult();
-        return;
-    }
+    console.log(answer)
     questionIndex++;
     loadQuestion();
 };
 
-function loadResult
+scoreArea.textContent = "Score:" + score; 
+
+function loadResult() {
+    result.textContent = 'Score: ' + score + '';
+};
