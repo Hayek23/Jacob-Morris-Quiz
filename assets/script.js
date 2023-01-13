@@ -5,7 +5,8 @@ let optionTwo = document.getElementById('2');
 let optionThree = document.getElementById('3');
 let quiz = document.getElementById('quiz');
 let startBtn = document.getElementById('start-btn')
-let timeLeft = 75;
+let timeLeft = 90;
+let holdInterval = 0
 let score = 0
 let timer = document.getElementById('timer')
 let scoreArea = document.getElementById('score')
@@ -44,20 +45,24 @@ const questions = [
 let lastQuestion = questions.length -1;
 let questionIndex = 0;
 
-timer.textContent = "Time Remaining: 0 seconds"
+timer.style.display = "none"
 
 startBtn.addEventListener('click', start)
 
 function start() {
-    const timeInterval = setInterval(function() {
-        timer.textContent = "Time remaining: " + timeLeft + ' seconds';
-        timeLeft -=1;
-        if(timeLeft === 0 || lastQuestion){
-            clearInterval(timeInterval);
-            timer.textContent = 'Time remaining:' + timeLeft + ' seconds'
-        }
-    }, 1000);
-    loadQuestion();
+    if(holdInterval === 0){
+        holdInterval = setInterval(function(){
+            timer.style.display = "block"
+            timeLeft--;
+            timer.textContent = "Time Remaining: " + timeLeft + " seconds"
+                    
+            if(timeLeft <=0 ){
+                clearInterval(holdInterval);
+                questionsArea.textContent = "Sorry you ran out of time :("
+            }
+            loadQuestion()
+        }, 1000)
+    }
 };
 
 function loadQuestion() {
@@ -67,23 +72,30 @@ function loadQuestion() {
     optionThree.innerHTML = questions[questionIndex].optionThree;
 };
 
+
 function check(answer){
     if(questions[questionIndex].correct == answer) {
-        answerOutput.textContent = "Correct"
-        score = score + 1;
-        console.log(score)
+        answerOutput.textContent = "Correct";
+        score++;
+        console.log(score);
     } else {
-        answerOutput.textContent = 'Incorrect'
-        score = score - 1
-        console.log(score)
+        answerOutput.textContent = 'Incorrect';
+        score--;
+        console.log(score);
     }
-    console.log(answer)
+    console.log(answer);
     questionIndex++;
-    loadQuestion();
+
+    if (questionIndex < questions.length){
+        loadQuestion();
+    } else {
+        loadResult()
+        questionsArea.textContent = 'Your Done!'
+    }
 };
 
-scoreArea.textContent = "Score:" + score; 
-
 function loadResult() {
-    result.textContent = 'Score: ' + score + '';
+    answersArea.style.display = "none"
+    answerOutput.textContent = ""
+    result.textContent = 'Final Score: ' + score + '';
 };
