@@ -2,6 +2,8 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
   ## Description
   This is a coding quiz that you can take to test your knowledge on coding
+  
+  Deployed site: https://hayek23.github.io/Jacob-Morris-Quiz/
   ## License
   [MIT](https://opensource.org/licenses/MIT)
   
