@@ -1,22 +1,7 @@
 # Jacob-Morris-Coding-Quiz
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
   ## Description
-  this is a coding quiz that you can take to test your knowledge on coding
-  ## Table of Contents
-  [Installation](##Installation)
-  [Instructions](##Instructions)
-  [Contribution](##Contribution)
-  [Testing](##Testing)
-  [License](##License)
-  [Creator](##Creator)
-  ## Installation
-  
-  ## Instructions
-  
-  ## Contribution
-  
-  ## Testing
-  
+  This is a coding quiz that you can take to test your knowledge on coding
   ## License
   [MIT](https://opensource.org/licenses/MIT)
   
